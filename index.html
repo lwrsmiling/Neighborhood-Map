@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vancouver Restaurants</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+#input {
+    margin: 15px 0 5px 20px;
+    width: 83%;
+    height: 35px;
+    font-size: 17px;
+    font-family: helvetica, sans-serif;
+    color: #9D9D9D;
+    border: none;
+    -webkit-box-shadow: 2px 2px 5px #9D9D9D;
+    outline: none;
+}
+
+#search-container {
+    position: absolute;
+    z-index: 3; 
+    left: 0;
+    top: 0;
+}
+
+#search-nav {
+    width: 280px;
+    max-height: 549px;
+    background-color: rgba(256,256,256,.9);
+    border: solid 2px orange;
+    overflow: hidden;
+}
+
+#scroller {
+    max-height: 480px;
+    overflow: scroll;
+    margin: 0 5px;
+}
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="search-container">
+      <div id="search-nav"> 
+        <input id="input" type="search" class="form-control" data-bind="textInput: query"/>
+        <div id="scroller" class="list-group" data-bind="foreach: filteredData">
+          <a href="#" class="list-group-item" data-bind="text: name, click: $parent.itemClicked.bind($data, $index())"></a>
+        </div>
+      </div>
+    </div>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAklv_lKL2mJgmKNbVIf7PW6KwpeRcnmhs&libraries=places&callback=initMap">
+    </script>
+  </body>
+</html>
